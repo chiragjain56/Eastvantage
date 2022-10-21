@@ -9,3 +9,14 @@ import com.test.entity.User;
 public interface UserRepo extends JpaRepository<User, Integer> {
 
 }
+
+//interface x {
+//void fun1();
+//}
+//
+//interface y extends x {
+//
+//}
+
+//spring data jpa fram. will provide the impl. of the password repo of interface(ie spring data jpa fram. will create an internal class which impl.
+//password repo interface and create its object and register with spring container as spring bean.

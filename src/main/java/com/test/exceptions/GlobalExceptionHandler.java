@@ -1,27 +1,29 @@
 package com.test.exceptions;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class GlobalExceptionHandler {
-	
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public ResponseEntity<?> handleMethodArgumentNotValidException(MethodArgumentNotValidException exp,
-			WebRequest req) {
-
-		MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(), exp.getMessage(), req.getDescription(false));
-
-		return new ResponseEntity<>(err, HttpStatus.METHOD_NOT_ALLOWED);
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public Map<String, String> handleInvalidArgument(MethodArgumentNotValidException ex) {
+		Map<String, String> errorMap = new HashMap<>();
+		ex.getBindingResult().getFieldErrors().forEach(error -> {
+			errorMap.put(error.getField(), error.getDefaultMessage());
+		});
+		return errorMap;
 	}
-
 
 	@ExceptionHandler(UserException.class)
 	public ResponseEntity<?> handleUserException(UserException exp, WebRequest req) {
@@ -47,16 +49,4 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<>(err, HttpStatus.METHOD_NOT_ALLOWED);
 	}
 
-//	@Override
-//	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-//			HttpHeaders headers, HttpStatus status, WebRequest req) {
-//		List<String> details = new ArrayList<>();
-//		for (ObjectError error : ex.getBindingResult().getAllErrors()) {
-//			details.add(error.getDefaultMessage());
-//		}
-//		MyErrorDetails error = new MyErrorDetails(LocalDateTime.now(), details.toString(), req.getDescription(false));
-//		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
-//	}
-
 }
-

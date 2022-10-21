@@ -12,18 +12,18 @@ import com.test.repository.UserRepo;
 @Service
 public class UserService {
 
-    @Autowired
-    private UserRepo userRepo;
+	@Autowired
+	private UserRepo userRepo;
 
-    public User save(User user) {
-        return userRepo.save(user);
-    }
+	public User save(User user) {
+		return userRepo.save(user);
+	}
 
 	public User findById(Integer id) throws UserException {
-        return userRepo.findById(id).orElseThrow(()-> new UserException("Not found!"));
-    }
+		return userRepo.findById(id).orElseThrow(() -> new UserException("Not found!"));
+	}
 
-    public List<User> getAll() {
-        return userRepo.findAll();
-    }
+	public List<User> getAll() {
+		return userRepo.findAll();
+	}
 }

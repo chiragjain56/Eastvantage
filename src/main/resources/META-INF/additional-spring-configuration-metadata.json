@@ -1,0 +1,22 @@
+{"properties": [
+  {
+    "name": "spring.h2.console.datasource",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.h2.console.datasource'"
+  },
+  {
+    "name": "spring.h2.console.url",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.h2.console.url'"
+  },
+  {
+    "name": "spring.h2.console.server",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.h2.console.server'"
+  },
+  {
+    "name": "spring.h2.console.port",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.h2.console.port'"
+  }
+]}

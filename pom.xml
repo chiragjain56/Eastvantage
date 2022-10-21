@@ -12,9 +12,9 @@
 	<artifactId>appointment</artifactId>
 	<version>1.0.0</version>
 	<name>appointment</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Demo project for Appointment</description>
 	<properties>
-		<java.version>19</java.version>
+		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -50,7 +50,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.14</version>
+			<version>8.0.14</version><!--$NO-MVN-MAN-VER$-->
 		</dependency>
 		<dependency>
 			<groupId>io.springfox</groupId>

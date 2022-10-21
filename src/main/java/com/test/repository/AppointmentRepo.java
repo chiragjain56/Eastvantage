@@ -1,6 +1,6 @@
 package com.test.repository;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,7 +12,7 @@ import com.test.entity.Appointment;
 @Repository
 public interface AppointmentRepo extends JpaRepository<Appointment, Integer> {
 
-	@Query(value = "SELECT apt FROM appointment apt WHERE " + "(apt.appointment_date = ?1 OR apt.appointment_date > ?1)"
+	@Query(value = "SELECT * FROM appointment apt WHERE " + "(apt.appointment_date = ?1 OR apt.appointment_date > ?1)"
 			+ "AND apt.appointment_date < ?2", nativeQuery = true)
 	List<Appointment> findAllInTime(Date start, Date end);
 }
